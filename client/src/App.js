@@ -9,7 +9,9 @@ class App extends Component {
     super();
     this.state = {
       todoList: '',
-      todoText: ''
+      todoText: '',
+      editTodoID: '',
+      loading: false
     }
   }
 
@@ -18,8 +20,10 @@ class App extends Component {
   }
 
   fetchData = () => {
+    this.setState({ loading: true });
+
     axios.get('/api/todo/all-todos')
-      .then(res => this.setState({ todoList: res.data }))
+      .then(res => this.setState({ todoList: res.data, editTodoID: '', loading: false }))
       .catch(err => console.log(err));
   }
 
@@ -31,12 +35,22 @@ class App extends Component {
     this.setState({ [e.target.name]: e.target.value })
   }
 
-  addTodo = e => {
-    e.preventDefault();
+  addTodo = () => {
+    this.setState({ loading: true });
+
+    var newTodo;
 
     if (!isEmpty(this.state.todoText)) {
-      const newTodo = {
-        text: this.state.todoText
+      
+      if(isEmpty(this.state.editTodoID)) {        
+        newTodo = {
+          text: this.state.todoText
+        }
+      } else {
+        newTodo = {
+          text: this.state.todoText,
+          _id: this.state.editTodoID
+        }
       }
 
       axios.post('/api/todo/add', newTodo)
@@ -45,36 +59,58 @@ class App extends Component {
     }
   }
 
+  deleteTodo = (id) => {
+    this.setState({ loading: true });
+
+    axios.delete(`/api/todo/remove-todo/${id}`)
+      .then(res => this.fetchData())
+      .catch(err => console.log(err))
+  }
+
+  editTodo = (id, text) => {
+    console.log(id, text);
+
+    this.setState({ todoText: text, editTodoID: id });
+  }
+
   render() {
-    const { todoList, todoText } = this.state;
+    const { todoList, todoText, loading } = this.state;
     console.log(todoList, todoText);
 
-    let listItem =
-      Object.keys(todoList).map((key, index) => {
-        return (
-          <li
-            key={todoList[key]._id}
-            onClick={() => this.itemClick(todoList[key]._id)}
-          >
-            <p>{todoList[index].text}</p>
-          </li>
-        )
-      });
+    let listItem;
+    
+    if(loading) {
+      listItem = "Loading..."
+    } else {
+      listItem =
+        Object.keys(todoList).map((key, index) => {
+          return (
+            <li
+              key={todoList[key]._id}
+              onClick={() => this.itemClick(todoList[key]._id)}
+            >
+              <p>{todoList[key].text}</p>
+              <button onClick={() => this.deleteTodo(todoList[key]._id)}>D</button>
+              <button onClick={() => this.editTodo(todoList[key]._id, todoList[key].text)}>E</button>
+            </li>
+          )
+        });
+    }
 
     return (
       <div className="App">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <form onSubmit={this.addTodo}>
                 <input
                   type="text"
+                  value={this.state.todoText}
                   placeholder="Add to-do"
                   name="todoText"
                   onChange={this.onChange}
                 />
-              </form>
-              <ul>{listItem}{console.log(listItem)}</ul>
+                <button onClick={() => this.addTodo()}>Add</button>
+              <ul>{listItem}</ul>
             </div>
           </div>
         </div>
