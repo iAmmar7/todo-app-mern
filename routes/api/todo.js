@@ -42,4 +42,14 @@ router.get('/all-todos', (req, res) => {
     .catch(err => console.log(err));
 })
 
+// Delete Todo
+router.delete('/remove-todo/:id', (req, res) => {
+  Todo.findById(req.params.id)
+    .then(todo => {
+      todo.remove()
+        .then(() => res.json({ success: true }));
+    })
+    .catch(err => res.status(404).json({ noTodoFound: "No todo found" }));
+})
+
 module.exports = router;
