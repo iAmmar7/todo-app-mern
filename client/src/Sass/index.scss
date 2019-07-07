@@ -1,0 +1,80 @@
+@import '_variables.scss';
+
+html, body {
+  height: 100%;
+  // overflow: hidden;
+}
+
+body {
+  list-style: none;
+  padding: 5%;
+  margin: 0;
+  background-color: rgb(182, 182, 182);
+}
+
+.App {
+  height: 100%;
+  width: 400px;
+  margin: auto;
+  border-radius: 10px;
+  // text-align: center;
+  background-color: $app-bg;
+  padding-top: 2%;
+  overflow-y: scroll;
+
+  .container {
+    padding: 3%;
+
+    .app-heading {
+      padding: 0;
+      margin: 0;
+      margin-bottom: 5%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+
+  
+      span {
+        font-size: 160%;
+        font-weight: 900;
+        color: $green;
+      }
+  
+      h2 {
+        margin-right: 3%;
+        margin-left: 3%;
+        margin-bottom: 0;
+        color: $text;
+      }
+    }
+
+    .input-div {
+      width: 100%;
+    }
+    
+    ul {
+      margin-top: 10%;
+      list-style: none;
+      padding-inline-start: 0;
+  
+      li {
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        // justify-content: center;
+        padding: 2% 0;
+  
+        p {
+          margin-right: auto;
+        }
+  
+        // button {
+        //   justify-self: flex-end;
+        // }
+      }
+    }
+  }
+
+}
+

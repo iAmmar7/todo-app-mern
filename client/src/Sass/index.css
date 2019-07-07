@@ -1,0 +1,78 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  list-style: none;
+  padding: 5%;
+  margin: 0;
+  background-color: #b6b6b6;
+}
+
+.App {
+  height: 100%;
+  width: 400px;
+  margin: auto;
+  border-radius: 10px;
+  background-color: white;
+  padding-top: 2%;
+  overflow-y: scroll;
+}
+
+.App .container {
+  padding: 3%;
+}
+
+.App .container .app-heading {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 5%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+}
+
+.App .container .app-heading span {
+  font-size: 160%;
+  font-weight: 900;
+  color: #42a147;
+}
+
+.App .container .app-heading h2 {
+  margin-right: 3%;
+  margin-left: 3%;
+  margin-bottom: 0;
+  color: #545454;
+}
+
+.App .container .input-div {
+  width: 100%;
+}
+
+.App .container ul {
+  margin-top: 10%;
+  list-style: none;
+  -webkit-padding-start: 0;
+          padding-inline-start: 0;
+}
+
+.App .container ul li {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding: 2% 0;
+}
+
+.App .container ul li p {
+  margin-right: auto;
+}
+/*# sourceMappingURL=index.css.map */

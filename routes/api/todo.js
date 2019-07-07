@@ -8,9 +8,12 @@ router.get('/test', (req, res) => res.json({ msg: "Router Works" }));
 
 // Add or Edit Todo
 router.post('/add', (req, res) => {
-  const newTodo = {};
-  if (req.body.text) newTodo.text = req.body.text;
-  if (req.body.done) newTodo.done = req.body.done;
+  const newTodo = {
+    text: req.body.text,
+    done: req.body.done
+  };
+  // if (req.body.text) newTodo.text = req.body.text;
+  // if (req.body.done) newTodo.done = req.body.done;
 
   if (req.body._id) {
     Todo.findOne({ "_id": req.body._id })
