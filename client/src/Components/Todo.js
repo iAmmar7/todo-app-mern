@@ -12,6 +12,7 @@ import EditIcon from "@material-ui/icons/Edit";
 
 import isEmpty from '../Validation/is-empty';
 import InputField from './InputField';
+import Loader from './Loader';
 
 // CheckBox Material-ui
 const GreenCheckbox = withStyles({
@@ -19,7 +20,8 @@ const GreenCheckbox = withStyles({
     color: green[400],
     "&$checked": {
       color: green[600]
-    }
+    },
+    alignSelf: 'flex-start'
   },
   checked: {}
 })(props => <Checkbox color="default" {...props} />);
@@ -129,7 +131,7 @@ class Todo extends Component {
     let listItem;
 
     if (loading) {
-      listItem = "Loading..."
+      listItem = <Loader />
     } else {
       listItem =
         Object.keys(todoList).map((key, index) => {
