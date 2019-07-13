@@ -9,7 +9,11 @@ body {
   list-style: none;
   padding: 5%;
   margin: 0;
-  background-color: rgb(182, 182, 182);
+  background-color: $body-bg;
+
+  @media screen and (max-width: 430px) {
+    padding: 0;
+  }
 }
 
 .App {
@@ -21,9 +25,18 @@ body {
   background-color: $app-bg;
   padding-top: 2%;
   // overflow: hidden;
+  
+  @media screen and (max-width: 430px) {
+    width: 100%;
+    margin: 0;
+  }
 
   .container {
     padding: 3%;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 
     .app-heading {
       padding: 0;
@@ -54,7 +67,7 @@ body {
     }
     
     ul {
-      height: 36em;
+      height: 80%;
       margin-top: 6%;
       margin-right: -3%;
       list-style: none;
@@ -83,15 +96,11 @@ body {
         &:hover {
           background-color: $li-bg;
         }
-  
-        // button {
-        //   justify-self: flex-end;
-        // }
       }
     }
     ul::-webkit-scrollbar { 
       background-color: dark;
-      width: 0.6em;
+      width: 0.5em;
     }
     ul::-webkit-scrollbar-track {
       box-shadow: inset 0 0 0.1em $scrollbar-hover; 
@@ -106,4 +115,3 @@ body {
   }
 
 }
-

@@ -20,7 +20,8 @@ const CssTextField = withStyles({
       "&.Mui-focused fieldset": {
         borderColor: "rgb(22, 145, 29)"
       }
-    }
+    },
+    textTransform: "capitalize"
   }
 })(TextField);
 

@@ -76,7 +76,8 @@ class Todo extends Component {
           _id: this.state.editTodoID
         }
       }
-      console.log(newTodo)
+      console.log(newTodo);
+      this.setState({ todoText: '' });
       axios.post('/api/todo/add', newTodo)
         .then(res => this.fetchData())
         .catch(err => console.log(err));
